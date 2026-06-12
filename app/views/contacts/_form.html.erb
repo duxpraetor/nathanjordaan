@@ -1,0 +1,88 @@
+<%= form_with(model: contact, data: { controller: "form-submit", action: "submit->form-submit#disable" }) do |form| %>
+  <% if contact.errors.any? %>
+    <div class="form-summary-error">
+      <%= pluralize(contact.errors.count, "error") %>
+      prevented this from being sent.
+    </div>
+  <% end %>
+
+  <%= render RubyUI::FormField.new do %>
+    <%= render RubyUI::FormFieldLabel.new(for: "contact_full_name") do %>
+      Your name
+      <span class="required-star">*</span>
+    <% end %>
+    <%= render RubyUI::Input.new(
+      type: :text,
+      name: "contact[full_name]",
+      id: "contact_full_name",
+      value: contact.full_name,
+      required: true,
+      autocomplete: "name",
+      autofocus: true,
+    ) %>
+    <% if contact.errors[:full_name].any? %>
+      <%= render RubyUI::FormFieldError.new do %>
+        <%= contact.errors[:full_name].to_sentence %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render RubyUI::FormField.new do %>
+    <%= render RubyUI::FormFieldLabel.new(for: "contact_company_name") do %>
+      Company name
+    <% end %>
+    <%= render RubyUI::Input.new(
+      type: :text,
+      name: "contact[company_name]",
+      id: "contact_company_name",
+      value: contact.company_name,
+      autocomplete: "organization",
+    ) %>
+  <% end %>
+
+  <%= render RubyUI::FormField.new do %>
+    <%= render RubyUI::FormFieldLabel.new(for: "contact_email") do %>
+      Email
+      <span class="required-star">*</span>
+    <% end %>
+    <%= render RubyUI::Input.new(
+      type: :email,
+      name: "contact[email]",
+      id: "contact_email",
+      value: contact.email,
+      required: true,
+      autocomplete: "email",
+    ) %>
+    <% if contact.errors[:email].any? %>
+      <%= render RubyUI::FormFieldError.new do %>
+        <%= contact.errors[:email].to_sentence %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render RubyUI::FormField.new do %>
+    <%= render RubyUI::FormFieldLabel.new(for: "contact_message") do %>
+      Message
+      <span class="required-star">*</span>
+    <% end %>
+    <%= render RubyUI::Textarea.new(
+      name: "contact[message]",
+      id: "contact_message",
+      required: true,
+      rows: 5
+    ) do %><%= contact.message %><% end %>
+    <% if contact.errors[:message].any? %>
+      <%= render RubyUI::FormFieldError.new do %>
+        <%= contact.errors[:message].to_sentence %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= invisible_captcha :subtitle %>
+
+  <div style="margin-top: 1.5rem;">
+    <%= render RubyUI::Button.new(type: :submit, data: { form_submit_target: "button" }) do %>
+      Send message
+    <% end %>
+  </div>
+<% end %>

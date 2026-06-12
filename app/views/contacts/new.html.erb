@@ -1,0 +1,13 @@
+<div class="page-container">
+  <% content_for :title, "Contact me" %>
+
+  <h1>Contact me</h1>
+
+  <div class="form-wrapper">
+    <%= render "form", contact: @contact %>
+  </div>
+
+  <p style="margin-top: 2.5rem;">
+    <%= link_to "← Back to CV", cv_index_path %>
+  </p>
+</div>

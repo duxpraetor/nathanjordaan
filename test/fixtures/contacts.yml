@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: Ada Lovelace
+  company_name: Analytical Engines
+  email: ada@example.com
+  message: Hello from the first contact.
+
+two:
+  full_name: Grace Hopper
+  company_name: COBOL Inc
+  email: grace@example.com
+  message: Hello from the second contact.

@@ -1,0 +1,71 @@
+<div class="page-container">
+  <h1>Edit your CV</h1>
+
+  <%= form_with model: @cv, url: cv_path, method: :patch do |f| %>
+    <h3>Profile</h3>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :email %><br>
+      <%= f.email_field :email %>
+    </p>
+    <p>
+      <%= f.label :summary %><br>
+      <%= f.text_area :summary, rows: 3 %>
+    </p>
+    <p>
+      <%= f.label :website_url %><br>
+      <%= f.text_field :website_url %>
+    </p>
+    <p>
+      <%= f.label :github_url %><br>
+      <%= f.text_field :github_url %>
+    </p>
+    <p>
+      <%= f.label :tag_list, "Skills (comma separated)" %><br>
+      <%= f.text_field :tag_list %>
+    </p>
+
+    <h3>Sections</h3>
+    <% @cv.sections.each do |section| %>
+      <div style="border: 1px solid #ccc; padding: 1em; margin-bottom: 1em;">
+        <h4><%= section.title %></h4>
+        <p>
+          <%= link_to "Edit section", edit_section_path(section) %> |
+          <%= link_to "Delete section", section_path(section), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </p>
+
+        <% section.entries.each do |entry| %>
+          <div style="border-left: 2px solid #ddd; padding-left: 1em; margin: 0.5em 0;">
+            <strong><%= entry.title %></strong>
+            <% if entry.date_text.present? %>
+              <span style="color: #666;">(<%= entry.date_text %>)</span>
+            <% end %>
+            <p>
+              <%= link_to "Edit entry", edit_entry_path(entry) %> |
+              <%= link_to "Delete entry", entry_path(entry), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </p>
+
+            <% entry.bullets.each do |bullet| %>
+              <div style="margin-left: 1em; font-size: 0.9em;">
+                - <%= bullet.description %>
+                <%= link_to "Edit", edit_bullet_path(bullet) %> |
+                <%= link_to "Delete", bullet_path(bullet), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </div>
+            <% end %>
+            <p><%= link_to "+ Add bullet", new_entry_bullet_path(entry) %></p>
+          </div>
+        <% end %>
+        <p><%= link_to "+ Add entry", new_section_entry_path(section) %></p>
+      </div>
+    <% end %>
+
+    <p><%= link_to "+ Add section", new_cv_section_path(cv_id: @cv.id) %></p>
+
+    <p><%= f.submit "Save CV" %></p>
+  <% end %>
+
+  <p><%= link_to "View CV", cv_index_path %> | <%= link_to "Home", root_path %></p>
+</div>

@@ -1,0 +1,9 @@
+<div class="page-container">
+  <h1>New Section</h1>
+  <%= form_with model: [:cv, @section] do |f| %>
+    <p><%= f.label :title %><br><%= f.text_field :title %></p>
+    <p><%= f.label :display_order %><br><%= f.number_field :display_order %></p>
+    <p><%= f.submit "Create Section" %></p>
+  <% end %>
+  <p><%= link_to "Back", edit_cv_path %></p>
+</div>

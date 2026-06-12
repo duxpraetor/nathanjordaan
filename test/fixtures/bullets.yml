@@ -1,0 +1,9 @@
+shipshape_bullet_1:
+  entry: shipshape
+  description: Redesign and rewrite of a Transport Management (TMS) Android app
+  display_order: 1
+
+shipshape_bullet_2:
+  entry: shipshape
+  description: Redesign and rewrite of existing freight forwarder ERP
+  display_order: 2
