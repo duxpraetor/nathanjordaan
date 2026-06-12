@@ -1,2 +1,21 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div>
+  <h1>Nathan Jordaan</h1>
+  <p>Welcome to
+    <span class="italic">My Space</span>.</p>
+</div>
+
+<div>
+  <h2>I am...</h2>
+  <ul>
+    <li>happily married to Shay,</li>
+    <li>a serious christian,</li>
+    <li>a full-stack developer,</li>
+    <li>a honkey-tonk pianist,</li>
+    <li>and proudly South African.</li>
+  </ul>
+</div>
+
+<div>
+  <%= link_to "Software CV", cv_index_path %>
+  <%= link_to "Get in touch", new_contact_path %>
+</div>
