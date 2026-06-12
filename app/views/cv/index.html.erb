@@ -1,2 +1,9 @@
-<h1>Cv#index</h1>
-<p>Find me in app/views/cv/index.html.erb</p>
+<h1>Curriculum Vitae</h1>
+
+<h2>Nathan Jordaan</h2>
+<p>Male South African,
+  <%= years_between(Date.today, Date.parse("1993-09-03")) %>
+  years old</p>
+
+<h3>Links</h3>
+<%= link_to "This repo", "https://github.com/duxpraetor/nathanjordaan" %>
