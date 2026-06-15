@@ -7,6 +7,7 @@ module DateHelper
 
     months = (d2.year * 12 + d2.month) - (d1.year * 12 + d1.month)
     months -= 1 if d2.day < d1.day
+    months
   end
 
   def years_between(date1, date2)
