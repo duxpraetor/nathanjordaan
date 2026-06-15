@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  invisible_captcha only: [:create], honeypot: :subtitle
+
   before_action :set_contact, only: %i[ show edit update destroy ]
 
   # GET /contacts or /contacts.json
