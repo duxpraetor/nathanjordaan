@@ -8,3 +8,28 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.tag {
+  display: inline-block;
+  background: #e8e8e8;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin: 2px;
+}
+
+.tag-sm {
+  display: inline-block;
+  background: #e8e8e8;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin: 2px;
+}
+
+.job-meta {
+  font-size: 13px;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
