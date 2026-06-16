@@ -1,25 +1,25 @@
-<div>
+<div class="page-container">
   <h1>Nathan Jordaan</h1>
   <p>Welcome to
     <span class="italic">My Space</span>.</p>
-</div>
 
-<div>
-  <h2>I am...</h2>
-  <ul>
-    <li>
-      <!-- Helper method demo: years_between -->
-      <%= years_between(Date.parse("1993-09-03"), Date.today) %>
-      years old,
-    </li>
-    <li>happily married to Shay,</li>
-    <li>a serious christian,</li>
-    <li>a full-stack developer,</li>
-    <li>and proudly South African.</li>
-  </ul>
-</div>
+  <div>
+    <h2>I am...</h2>
+    <ul>
+      <li>
+        <!-- Helper method demo: years_between -->
+        <%= years_between(Date.parse("1993-09-03"), Date.today) %>
+        years old,
+      </li>
+      <li>happily married to Shay,</li>
+      <li>a serious christian,</li>
+      <li>a full-stack developer,</li>
+      <li>and proudly South African.</li>
+    </ul>
+  </div>
 
-<div>
-  <%= link_to "Software CV", cv_index_path %>
-  <%= link_to "Get in touch", new_contact_path %>
+  <div>
+    <%= link_to "Software CV", cv_index_path %>
+    <%= link_to "Get in touch", new_contact_path %>
+  </div>
 </div>

@@ -1,35 +1,147 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Tufte CSS — inspired by Edward Tufte's typographic style
  */
 
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  background-color: #fffff8;
+  color: #111;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links — underlined, not coloured */
+a {
+  color: #111;
+  text-decoration: underline;
+  text-decoration-color: #999;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: #444;
+  text-decoration-color: #444;
+}
+
+/* Page container */
+.page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Headings — restrained, elegant */
+h1 {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.6rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: #111;
+}
+
+h3 {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h4 {
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
+  color: #111;
+  max-width: 100%;
+}
+
+/* Job header — flex, but date sits in the margin visually */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: 100%;
+  margin-bottom: 0.2rem;
+}
+
+.job-date {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Meta text — lighter, margin-style */
+.job-meta {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+
+/* Paragraphs */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Lists — em-dashes instead of bullets */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.4rem;
+  position: relative;
+  max-width: 100%;
+}
+
+li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #999;
+  font-style: normal;
+}
+
+/* Tags — elegant, restrained */
 .tag {
   display: inline-block;
-  background: #e8e8e8;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin: 2px;
+  background: transparent;
+  border: 1px solid #bbb;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-style: italic;
+  margin: 2px 2px 2px 0;
+  color: #555;
+  font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 .tag-sm {
   display: inline-block;
-  background: #e8e8e8;
-  padding: 1px 6px;
-  border-radius: 10px;
-  font-size: 11px;
-  margin: 2px;
-}
-
-.job-meta {
-  font-size: 13px;
-  color: #888;
-  margin-top: 0;
-  margin-bottom: 0.5em;
+  background: transparent;
+  border: 1px solid #bbb;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-style: italic;
+  margin: 2px 2px 2px 0;
+  color: #555;
+  font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
