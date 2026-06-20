@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsIcons::Engine, at: '/rails_icons'
   resources :contacts
   get "cv/index"
   get "home/index"
