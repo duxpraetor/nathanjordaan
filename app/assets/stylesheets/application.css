@@ -119,6 +119,16 @@ li::before {
   font-style: normal;
 }
 
+.contact-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-icon {
+  vertical-align: text-bottom;
+  margin-right: 0.3em;
+}
+
 /* Tags — elegant, restrained */
 .tag {
   display: inline-block;
