@@ -27,13 +27,16 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: "Contact was successfully created." }
+        format.html { redirect_to thank_you_contacts_path }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @contact.errors, status: :unprocessable_content }
       end
     end
+  end
+
+  def thank_you
   end
 
   # PATCH/PUT /contacts/1 or /contacts/1.json
