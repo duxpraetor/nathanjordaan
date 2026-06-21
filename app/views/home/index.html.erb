@@ -1,7 +1,6 @@
 <div class="page-container">
   <h1>Nathan Jordaan</h1>
-  <p>Welcome to
-    <span class="italic">My Space</span>.</p>
+  <p>Welcome to my very humble website, it's really only for my CV.</p>
 
   <div>
     <h2>I am...</h2>
@@ -19,7 +18,9 @@
   </div>
 
   <div>
-    <%= link_to "Software CV", cv_index_path %>
-    <%= link_to "Get in touch", new_contact_path %>
+    <%= link_to cv_index_path do %>
+      <%= icon "file-text", height: 16, width: 16, class: "contact-icon" %>
+      See my CV
+    <% end %>
   </div>
 </div>
