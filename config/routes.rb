@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   mount RailsIcons::Engine, at: '/rails_icons'
   resources :contacts do
     collection do
