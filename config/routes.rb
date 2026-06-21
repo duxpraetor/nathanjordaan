@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
   end
   get "cv/index"
+  get "cv/pdf", to: "cv#pdf", as: :cv_pdf
   get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
