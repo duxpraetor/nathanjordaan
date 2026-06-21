@@ -71,6 +71,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "sentry-ruby"
+gem "sentry-rails"
 gem "rails_icons", "~> 1.8"
 gem "prawn"
 gem "prawn-svg"
