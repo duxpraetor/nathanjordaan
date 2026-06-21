@@ -1,6 +1,8 @@
 class ContactsController < ApplicationController
   invisible_captcha only: [:create], honeypot: :subtitle
 
+  allow_unauthenticated_access only: %i[ new create thank_you ]
+  before_action :require_owner, except: %i[ new create thank_you ]
   before_action :set_contact, only: %i[ show edit update destroy ]
 
   # GET /contacts or /contacts.json
@@ -67,6 +69,11 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params.expect(:id))
+    end
+
+    def require_owner
+      require_authentication
+      redirect_to root_path, alert: "Access denied." unless Current.user&.email_address == "nathanjordaan@gmail.com"
     end
 
     # Only allow a list of trusted parameters through.
