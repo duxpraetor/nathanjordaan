@@ -27,6 +27,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        ContactMailer.new_contact(@contact).deliver_later
         format.html { redirect_to thank_you_contacts_path }
         format.json { render :show, status: :created, location: @contact }
       else
