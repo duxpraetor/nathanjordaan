@@ -26,11 +26,9 @@
         <p><%= entry.blurb %></p>
       <% end %>
 
-      <% if entry.subtitle.present? && section.title == "Education" %>
-        <p><%= entry.subtitle %></p>
-      <% elsif entry.subtitle.present? %>
-        <p class="job-header">
-          <span><%= entry.subtitle %></span>
+      <% if entry.subtitle.present? %>
+        <p>
+          <%= entry.subtitle %>
           <% if entry.tags.any? %>
             <% entry.tags.each do |tag| %>
               <span class="tag-sm"><%= tag.name %></span>

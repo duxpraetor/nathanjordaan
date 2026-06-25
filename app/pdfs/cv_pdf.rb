@@ -79,33 +79,8 @@ class CvPdf
       pdf.move_down 10
     end
 
-    if entry.subtitle.present? && section_title == "Education"
-      pdf.text entry.subtitle, size: 10, color: BODY_COLOR
-      pdf.move_down 10
-    elsif entry.subtitle.present?
-      pdf.fill_color BODY_COLOR
-      pdf.text_box "#{entry.title} - #{entry.subtitle}",
-                   at: [0, pdf.cursor],
-                   width: pdf.bounds.width,
-                   size: 10,
-                   leading: 3,
-                   overflow: :expand
-      pdf.fill_color "000000"
-      text_height = pdf.height_of("#{entry.title} - #{entry.subtitle}",
-                                  width: pdf.bounds.width, size: 10, leading: 3)
-      pdf.move_down text_height + 4
-
-      entry_tags = entry.tags.map(&:name)
-      if entry_tags.any?
-        pdf.fill_color MUTED_COLOR
-        pdf.text_box entry_tags.join(" · "),
-                     at: [0, pdf.cursor],
-                     width: pdf.bounds.width,
-                     size: 8,
-                     overflow: :expand
-        pdf.fill_color "000000"
-        pdf.move_down 12
-      end
+    if entry.subtitle.present?
+      entry_with_inline_tags(pdf, entry.subtitle, entry.tags.map(&:name))
     end
 
     entry.bullets.each do |bullet|
@@ -150,6 +125,48 @@ class CvPdf
 
     total_height = start_cursor - min_y + line_height
     pdf.move_down(total_height)
+  end
+
+  def entry_with_inline_tags(pdf, subtitle, tag_items)
+    text_width = pdf.width_of(subtitle, size: 10) + 6
+
+    start_cursor = pdf.cursor
+    x = pdf.bounds.left
+    y = start_cursor
+    line_height = 22
+    min_y = y
+
+    pdf.fill_color BODY_COLOR
+    pdf.draw_text subtitle, at: [x, y - 11], size: 10
+    pdf.fill_color "000000"
+    x += text_width
+
+    pdf.font("Times-Italic") do
+      tag_items.each do |item|
+        tag_text = item.to_s
+        width = pdf.width_of(tag_text, size: 8) + 10
+        height = 16
+
+        if x + width > pdf.bounds.right
+          x = pdf.bounds.left
+          y -= line_height
+          min_y = y
+        end
+
+        pdf.stroke_color TAG_BORDER
+        pdf.line_width 0.5
+        pdf.stroke_rounded_rectangle [x, y], width, height, 4
+        pdf.stroke_color "000000"
+        pdf.fill_color TAG_TEXT
+        pdf.draw_text tag_text, at: [x + 5, y - 11], size: 8
+        pdf.fill_color "000000"
+
+        x += width + 6
+      end
+    end
+
+    total_height = start_cursor - min_y + line_height
+    pdf.move_down(total_height + 4)
   end
 
   def bullet_with_inline_tags(pdf, bullet)
