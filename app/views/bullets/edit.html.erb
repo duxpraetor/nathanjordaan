@@ -1,0 +1,10 @@
+<div class="page-container">
+  <h1>Edit Bullet</h1>
+  <%= form_with model: @bullet do |f| %>
+    <p><%= f.label :description %><br><%= f.text_area :description, rows: 3 %></p>
+    <p><%= f.label :display_order %><br><%= f.number_field :display_order %></p>
+    <p><%= f.label :tag_list, "Tags (comma separated)" %><br><%= f.text_field :tag_list %></p>
+    <p><%= f.submit "Update Bullet" %></p>
+  <% end %>
+  <p><%= link_to "Back", edit_cv_path %></p>
+</div>

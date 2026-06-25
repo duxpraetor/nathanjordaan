@@ -1,0 +1,30 @@
+shipshape:
+  section: work
+  title: ShipShape Software
+  date_text: 2021 to present
+  meta: SaaS · ERP · Logistics
+  blurb: Full development lifecycle.
+  display_order: 1
+
+am2:
+  section: work
+  title: AM² Systems
+  date_text: 2017 to 2021
+  meta: Startup · Mining
+  blurb: Introduced Scrum.
+  display_order: 2
+
+mysrc:
+  section: projects
+  title: mysrc
+  subtitle: quotes and metal price
+  date_text: 2025
+  blurb: Rails app for a recycling company.
+  display_order: 1
+
+wits:
+  section: education
+  title: University of the Witwatersrand
+  subtitle: BSc (Eng) Electrical and Information Engineering
+  date_text: 2012–2015
+  display_order: 1

@@ -1,0 +1,14 @@
+work:
+  cv: owner_cv
+  title: Work experience
+  display_order: 1
+
+projects:
+  cv: owner_cv
+  title: Personal Projects
+  display_order: 2
+
+education:
+  cv: owner_cv
+  title: Education
+  display_order: 3

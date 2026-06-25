@@ -2,24 +2,29 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   mount RailsIcons::Engine, at: '/rails_icons'
+
   resources :contacts do
     collection do
       get :thank_you
     end
   end
-  get "cv/index"
-  get "cv/pdf", to: "cv#pdf", as: :cv_pdf
+
+  get "cv/index", to: "cvs#index"
+  get "cv/pdf", to: "cvs#pdf", as: :cv_pdf
+
+  resource :cv, only: [:show, :edit, :update] do
+    resources :sections, only: [:new, :create]
+  end
+  resources :sections, only: [:edit, :update, :destroy] do
+    resources :entries, only: [:new, :create]
+  end
+  resources :entries, only: [:edit, :update, :destroy] do
+    resources :bullets, only: [:new, :create]
+  end
+  resources :bullets, only: [:edit, :update, :destroy]
+
   get "home/index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
   root "home#index"
 end

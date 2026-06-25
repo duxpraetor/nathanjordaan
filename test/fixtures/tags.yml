@@ -1,0 +1,11 @@
+sql:
+  name: SQL
+
+rails:
+  name: Ruby on Rails
+
+csharp:
+  name: C#
+
+react_native:
+  name: React Native

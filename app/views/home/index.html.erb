@@ -22,5 +22,20 @@
       <%= icon "file-text", height: 16, width: 16, class: "contact-icon" %>
       See my CV
     <% end %>
+    <% if authenticated? %>
+      <%= link_to edit_cv_path do %>
+        <%= icon "pencil", height: 16, width: 16, class: "contact-icon" %>
+        Edit my CV
+      <% end %>
+      <%= link_to session_path, data: { turbo_method: :delete } do %>
+        <%= icon "log-out", height: 16, width: 16, class: "contact-icon" %>
+        Sign out
+      <% end %>
+    <% else %>
+      <%= link_to new_session_path do %>
+        <%= icon "log-in", height: 16, width: 16, class: "contact-icon" %>
+        Sign in
+      <% end %>
+    <% end %>
   </div>
 </div>
