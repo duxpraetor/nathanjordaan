@@ -1,137 +1,81 @@
 <div class="page-container">
-  <h1>Nathan Jordaan</h1>
+  <h1><%= @cv.name %></h1>
 
-  <p>Full-stack developer with
-    <%= years_between(Date.parse("2016-01-01"), Date.today) %>
-    years across logistics, mining and fintech.<br>Designs, develops and deploys mobile, web, and data systems within teams or
-    solo.
-  </p>
+  <p><%= @cv.summary %></p>
 
   <p>
-    <span class="tag">SQL</span>
-    <span class="tag">Ruby on Rails</span>
-    <span class="tag">C#</span>
-    <span class="tag">.NET</span>
-    <span class="tag">Angular</span>
-    <span class="tag">React</span>
-    <span class="tag">React Native</span>
-    <span class="tag">Docker</span>
-    <span class="tag">Git</span>
-    <span class="tag">Scrum</span>
-  </p>
-
-  <h3>Work experience</h3>
-
-  <h4 class="job-header">
-    <span>ShipShape Software</span>
-    <span class="job-date">2021 to present</span>
-  </h4>
-  <p class="job-meta">SaaS · ERP · Logistics</p>
-  <p>Full development lifecycle — architecture, design, coding, deployment,
-    support, and team management. Delegate work to a small team, manage PRs,
-    and handle production releases directly.</p>
-  <ul>
-    <li>Redesign and rewrite of a Transport Management (TMS) Android app
-      <span class="tag-sm">React Native</span>
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">MSSQL</span>
-      <span class="tag-sm">Expo</span>
-    </li>
-    <li>Redesign and rewrite of existing freight forwarder ERP
-      <span class="tag-sm">Angular</span>
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">MSSQL</span>
-      <span class="tag-sm">Azure DevOps</span>
-      <span class="tag-sm">Docker</span>
-    </li>
-  </ul>
-
-  <h4 class="job-header">
-    <span>AM<sup>2</sup>
-      Systems</span>
-    <span class="job-date">2017 to 2021</span>
-  </h4>
-  <p class="job-meta">Startup · Mining · Petrochem</p>
-  <p>Introduced Scrum and ran company-wide knowledge sharing sessions. Built
-    systems across multiple industries. Designed and implemented multiple
-    applications and modules.</p>
-  <ul>
-    <li>Industrial data portal — built a C# wrapper around the OSIsoft SDK for
-      web access without direct DB connection
-      <span class="tag-sm">Razor</span>
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">OSIsoft</span>
-    </li>
-    <li>Fruit export web app with Sage integrations
-      <span class="tag-sm">Razor</span>
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">Sage</span>
-    </li>
-    <li>Service ingesting Azure IoT streams into Azure Data Explorer
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">Azure IoT</span>
-      <span class="tag-sm">Azure Data Explorer</span>
-    </li>
-  </ul>
-
-  <h4 class="job-header">
-    <span>Entelect</span>
-    <span class="job-date">2016</span>
-  </h4>
-  <p class="job-meta">Contracting · Fintech</p>
-  <p>Delivered features within a structured 2-week scrum team.</p>
-  <ul>
-    <li>Migrated investment business rules to Drools, working closely with a
-      business analyst
-      <span class="tag-sm">C#</span>
-      <span class="tag-sm">Java</span>
-      <span class="tag-sm">Drools</span>
-    </li>
-  </ul>
-
-  <h3>Personal Projects</h3>
-  <p class="job-header">
-    <span>mysrc — quotes and metal price
-      <span class="tag-sm">Rails</span>
-      <span class="tag-sm">Kamal</span>
-    </span>
-    <span class="job-date">2025</span>
-  </p>
-
-  <h3>Education</h3>
-  <p class="job-header">
-    <span>University of the Witwatersrand — BSc (Eng) Electrical and Information
-      Engineering</span>
-    <span class="job-date">2012–2015</span>
-  </p>
-
-  <h3>Contact</h3>
-  <p class="contact-links">
-    <%= link_to new_contact_path do %>
-      <%= icon "send", height: 16, width: 16, class: "contact-icon" %>
-      Contact me
-    <% end %>
-    <%= link_to "mailto:nathanjordaan@gmail.com" do %>
-      <%= icon "mail", height: 16, width: 16, class: "contact-icon" %>
-      nathanjordaan@gmail.com
-    <% end %>
-
-    <%= link_to "https://github.com/duxpraetor/nathanjordaan", target: :blank do %>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        class="contact-icon"
-      ><path
-          d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-        /></svg>
-      duxpraetor
-    <% end %>
-    <%= link_to cv_pdf_path do %>
-      <%= icon "download", height: 16, width: 16, class: "contact-icon" %>
-      View as PDF
+    <% @cv.tags.each do |tag| %>
+      <span class="tag"><%= tag.name %></span>
     <% end %>
   </p>
+
+  <% @cv.sections.each do |section| %>
+    <h3><%= section.title %></h3>
+
+    <% section.entries.each do |entry| %>
+      <h4 class="job-header">
+        <span><%= entry.title %></span>
+        <span class="job-date"><%= entry.date_text %></span>
+      </h4>
+
+      <% if entry.meta.present? %>
+        <p class="job-meta"><%= entry.meta %></p>
+      <% end %>
+
+      <% if entry.blurb.present? %>
+        <p><%= entry.blurb %></p>
+      <% end %>
+
+      <% if entry.subtitle.present? && section.title == "Education" %>
+        <p><%= entry.subtitle %></p>
+      <% elsif entry.subtitle.present? %>
+        <p class="job-header">
+          <span><%= entry.subtitle %></span>
+          <% if entry.tags.any? %>
+            <% entry.tags.each do |tag| %>
+              <span class="tag-sm"><%= tag.name %></span>
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+
+      <% if entry.bullets.any? %>
+        <ul>
+          <% entry.bullets.each do |bullet| %>
+            <li>
+              <%= bullet.description %>
+              <% bullet.tags.each do |tag| %>
+                <span class="tag-sm"><%= tag.name %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @cv.email == "nathanjordaan@gmail.com" %>
+    <h3>Contact</h3>
+    <p class="contact-links">
+      <%= link_to new_contact_path do %>
+        <%= icon "send", height: 16, width: 16, class: "contact-icon" %>
+        Contact me
+      <% end %>
+      <%= link_to "mailto:#{@cv.email}" do %>
+        <%= icon "mail", height: 16, width: 16, class: "contact-icon" %>
+        <%= @cv.email %>
+      <% end %>
+
+      <% if @cv.github_url.present? %>
+        <%= link_to @cv.github_url, target: :blank do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="contact-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <%= @cv.github_url.sub("https://github.com/", "") %>
+        <% end %>
+      <% end %>
+      <%= link_to cv_pdf_path do %>
+        <%= icon "download", height: 16, width: 16, class: "contact-icon" %>
+        View as PDF
+      <% end %>
+    </p>
+  <% end %>
 </div>

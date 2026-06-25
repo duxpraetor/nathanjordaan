@@ -1,7 +1,8 @@
 class ContactMailer < ApplicationMailer
   def new_contact(contact)
     @contact = contact
-    attachments["nathan-jordaan-cv.pdf"] = CvPdf.new.generate
+    cv = Cv.joins(:user).find_by(users: { email_address: "nathanjordaan@gmail.com" })
+    attachments["#{cv.name.parameterize}-cv.pdf"] = CvPdf.new(cv).generate
     mail(
       to: contact.email,
       bcc: "nathanjordaan@gmail.com",
