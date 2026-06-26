@@ -13,11 +13,11 @@ cv = Cv.find_or_create_by!(user: user) do |c|
 end
 
 # Create tags
-tag_names = ["SQL", "Ruby on Rails", "C#", ".NET", "Angular", "React", "React Native", "Docker", "Git", "Scrum", "Razor", "OSIsoft", "Sage", "Azure IoT", "Azure Data Explorer", "Azure DevOps", "MSSQL", "Expo", "Java", "Drools", "Process Design"]
+tag_names = [ "SQL", "Ruby on Rails", "C#", ".NET", "Angular", "React", "React Native", "Docker", "Git", "Scrum", "Razor", "OSIsoft", "Sage", "Azure IoT", "Azure Data Explorer", "Azure DevOps", "MSSQL", "Expo", "Java", "Drools", "Process Design" ]
 tags = tag_names.index_with { |name| Tag.find_or_create_by!(name: name) }
 
 # Tag the CV
-cv.tags = [tags["SQL"], tags["Ruby on Rails"], tags["C#"], tags[".NET"], tags["Angular"], tags["React"], tags["React Native"], tags["Docker"], tags["Git"], tags["Scrum"]]
+cv.tags = [ tags["SQL"], tags["Ruby on Rails"], tags["C#"], tags[".NET"], tags["Angular"], tags["React"], tags["React Native"], tags["Docker"], tags["Git"], tags["Scrum"] ]
 
 # Work experience section
 work = cv.sections.find_or_create_by!(title: "Work experience", display_order: 1)
@@ -30,10 +30,10 @@ shipshape = work.entries.find_or_create_by!(title: "ShipShape Software", display
 end
 
 b1 = shipshape.bullets.find_or_create_by!(description: "Redesign and rewrite of a Transport Management (TMS) Android app", display_order: 1)
-b1.tags = [tags["React Native"], tags["C#"], tags["MSSQL"], tags["Expo"]]
+b1.tags = [ tags["React Native"], tags["C#"], tags["MSSQL"], tags["Expo"] ]
 
 b2 = shipshape.bullets.find_or_create_by!(description: "Redesign and rewrite of existing freight forwarder ERP", display_order: 2)
-b2.tags = [tags["Angular"], tags["C#"], tags["MSSQL"], tags["Azure DevOps"], tags["Docker"]]
+b2.tags = [ tags["Angular"], tags["C#"], tags["MSSQL"], tags["Azure DevOps"], tags["Docker"] ]
 
 # AM2
 am2 = work.entries.find_or_create_by!(title: "AM² Systems", display_order: 2) do |e|
@@ -43,13 +43,13 @@ am2 = work.entries.find_or_create_by!(title: "AM² Systems", display_order: 2) d
 end
 
 b3 = am2.bullets.find_or_create_by!(description: "Industrial data portal — built a C# wrapper around the OSIsoft SDK for web access without direct DB connection", display_order: 1)
-b3.tags = [tags["Razor"], tags["C#"], tags["OSIsoft"]]
+b3.tags = [ tags["Razor"], tags["C#"], tags["OSIsoft"] ]
 
 b4 = am2.bullets.find_or_create_by!(description: "Fruit export web app with Sage integrations", display_order: 2)
-b4.tags = [tags["Razor"], tags["C#"], tags["Sage"]]
+b4.tags = [ tags["Razor"], tags["C#"], tags["Sage"] ]
 
 b5 = am2.bullets.find_or_create_by!(description: "Service ingesting Azure IoT streams into Azure Data Explorer", display_order: 3)
-b5.tags = [tags["C#"], tags["Azure IoT"], tags["Azure Data Explorer"]]
+b5.tags = [ tags["C#"], tags["Azure IoT"], tags["Azure Data Explorer"] ]
 
 # Entelect
 entelect = work.entries.find_or_create_by!(title: "Entelect", display_order: 3) do |e|
@@ -59,19 +59,18 @@ entelect = work.entries.find_or_create_by!(title: "Entelect", display_order: 3) 
 end
 
 b6 = entelect.bullets.find_or_create_by!(description: "Migrated investment business rules to Drools, working closely with a business analyst", display_order: 1)
-b6.tags = [tags["C#"], tags["Java"], tags["Drools"]]
+b6.tags = [ tags["C#"], tags["Java"], tags["Drools"] ]
 
 b7 = entelect.bullets.find_or_create_by!(description: "Redesigned the investment approval workflow with the product owner", display_order: 2)
-b7.tags = [tags["Process Design"]]
+b7.tags = [ tags["Process Design"] ]
 
 # Personal Projects section
 projects = cv.sections.find_or_create_by!(title: "Personal Projects", display_order: 2)
 mysrc = projects.entries.find_or_create_by!(title: "mysrc", display_order: 1) do |e|
-  e.subtitle = "quotes and metal price"
   e.date_text = "2025"
   e.blurb = "Rails app for a recycling company — quotes, shipments, pricing, email lists"
 end
-mysrc.tags = [tags["Ruby on Rails"], tags["Docker"]]
+mysrc.tags = [ tags["Ruby on Rails"], tags["Docker"] ]
 
 # Education section
 education = cv.sections.find_or_create_by!(title: "Education", display_order: 3)

@@ -75,8 +75,13 @@ class CvPdf
     end
 
     if entry.blurb.present?
-      pdf.text entry.blurb, size: 10, leading: 3, color: BODY_COLOR
-      pdf.move_down 10
+      tag_items = entry.tags.map(&:name)
+      if tag_items.any? && entry.subtitle.blank?
+        entry_with_inline_tags(pdf, entry.blurb, tag_items)
+      else
+        pdf.text entry.blurb, size: 10, leading: 3, color: BODY_COLOR
+        pdf.move_down 10
+      end
     end
 
     if entry.subtitle.present?
