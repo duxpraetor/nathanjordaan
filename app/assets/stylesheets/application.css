@@ -1,6 +1,33 @@
 /*
  * Tufte CSS — inspired by Edward Tufte's typographic style
+ * Brand colors: cream #f8ecd7, rust #c26331, dark brown #604737
  */
+
+/* === PRIMITIVE TOKENS === */
+:root {
+  --color-cream: #f8ecd7;
+  --color-cream-light: #faf5ed;
+  --color-rust: #c26331;
+  --color-rust-hover: #a04f28;
+  --color-rust-muted: #d49573;
+  --color-brown: #604737;
+  --color-brown-light: #8b6f5f;
+  --color-brown-lighter: #b8a399;
+  --color-brown-subtle: #d4c8c0;
+}
+
+/* === SEMANTIC TOKENS === */
+:root {
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-brown);
+  --color-primary: var(--color-rust);
+  --color-primary-hover: var(--color-rust-hover);
+  --color-muted: var(--color-brown-light);
+  --color-muted-light: var(--color-brown-lighter);
+  --color-border: var(--color-brown-subtle);
+  --color-tag: var(--color-brown-light);
+  --color-tag-border: var(--color-brown-lighter);
+}
 
 html {
   font-size: 15px;
@@ -9,8 +36,8 @@ html {
 
 body {
   font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-  background-color: #fffff8;
-  color: #111;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -18,15 +45,15 @@ body {
 
 /* Links — underlined, not coloured */
 a {
-  color: #111;
+  color: var(--color-foreground);
   text-decoration: underline;
-  text-decoration-color: #999;
+  text-decoration-color: var(--color-border);
   text-underline-offset: 0.15em;
 }
 
 a:hover {
-  color: #444;
-  text-decoration-color: #444;
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
 }
 
 /* Page container */
@@ -44,7 +71,7 @@ h1 {
   margin-top: 0;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  color: #111;
+  color: var(--color-foreground);
 }
 
 h2 {
@@ -52,7 +79,7 @@ h2 {
   font-size: 2.0rem;
   margin-top: 2.0rem;
   margin-bottom: 1rem;
-  color: #111;
+  color: var(--color-foreground);
 }
 
 h3 {
@@ -61,7 +88,7 @@ h3 {
   font-size: 1.4rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  color: #111;
+  color: var(--color-primary);
 }
 
 h4 {
@@ -69,7 +96,7 @@ h4 {
   font-size: 1.15rem;
   margin-top: 1.5rem;
   margin-bottom: 0.3rem;
-  color: #111;
+  color: var(--color-foreground);
   max-width: 100%;
 }
 
@@ -85,7 +112,7 @@ h4 {
 .job-date {
   font-style: italic;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-muted);
   font-weight: 400;
 }
 
@@ -93,7 +120,7 @@ h4 {
 .job-meta {
   font-style: italic;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--color-muted);
   margin-top: 0;
   margin-bottom: 0.6em;
 }
@@ -123,7 +150,7 @@ li::before {
   content: "—";
   position: absolute;
   left: 0;
-  color: #999;
+  color: var(--color-border);
   font-style: normal;
 }
 
@@ -141,25 +168,25 @@ li::before {
 .tag {
   display: inline-block;
   background: transparent;
-  border: 1px solid #bbb;
+  border: 1px solid var(--color-tag-border);
   padding: 1px 6px;
   border-radius: 3px;
   font-size: 0.75rem;
   font-style: italic;
   margin: 2px 2px 2px 0;
-  color: #555;
+  color: var(--color-tag);
   font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 .tag-sm {
   display: inline-block;
   background: transparent;
-  border: 1px solid #bbb;
+  border: 1px solid var(--color-tag-border);
   padding: 1px 5px;
   border-radius: 3px;
   font-size: 0.7rem;
   font-style: italic;
   margin: 2px 2px 2px 0;
-  color: #555;
+  color: var(--color-tag);
   font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
