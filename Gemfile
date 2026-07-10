@@ -73,7 +73,7 @@ end
 
 gem "sentry-ruby"
 gem "sentry-rails"
-gem "rails_icons", "~> 1.8"
+gem "rails_icons", "~> 1.9"
 gem "prawn"
 gem "prawn-svg"
 
