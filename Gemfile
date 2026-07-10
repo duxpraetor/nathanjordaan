@@ -76,3 +76,9 @@ gem "sentry-rails"
 gem "rails_icons", "~> 1.8"
 gem "prawn"
 gem "prawn-svg"
+
+gem "ruby_ui", "~> 1.4", group: :development, require: false
+
+gem "phlex-rails", "~> 2.4"
+
+gem "tailwind_merge", "~> 1.5"
