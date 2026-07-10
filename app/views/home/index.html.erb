@@ -1,20 +1,20 @@
-<div class="page-container">
-  <h1>Nathan Jordaan</h1>
+<div class="page-container" data-controller="reveal" data-reveal-hidden>
+  <h1 class="reveal-item" data-reveal-target="item">Nathan Jordaan</h1>
 
-  <p>
+  <p class="reveal-item" data-reveal-target="item">
     I'm a full-stack developer based in Johannesburg, building mobile, web, and
     data systems with experience in logistics, mining, and fin-tech. Whether
     you need architecture, continuous integration, developer management or
     plain old coding — I have the tools to solve your problems.
   </p>
 
-  <p>
+  <p class="reveal-item" data-reveal-target="item">
     I am currently working as an independent contractor to fill technical gaps
     within your business.
     <%= link_to "Get in touch", new_contact_path %>.
   </p>
 
-  <p>
+  <p class="reveal-item" data-reveal-target="item">
     <%= link_to cv_index_path do %>
       <%= icon "file-text", height: 16, width: 16, class: "contact-icon" %>
       My traditional CV is here, if you need it.
@@ -22,7 +22,7 @@
   </p>
 
   <% if authenticated? %>
-    <p>
+    <p class="reveal-item" data-reveal-target="item">
       <%= link_to edit_cv_path do %>
         <%= icon "pencil", height: 16, width: 16, class: "contact-icon" %>
         Edit CV

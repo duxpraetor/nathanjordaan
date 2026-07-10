@@ -190,3 +190,38 @@ li::before {
   color: var(--color-tag);
   font-family: "ETBook", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
+
+/* === SCROLL REVEAL ANIMATIONS === */
+
+/* Prevent flash: hidden instantly until JS lifts the attribute */
+[data-reveal-hidden] .reveal-item {
+  visibility: hidden;
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+  transition:
+    opacity 700ms cubic-bezier(0.215, 0.610, 0.355, 1.000),
+    transform 700ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-hidden] .reveal-item {
+    visibility: visible;
+  }
+
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
