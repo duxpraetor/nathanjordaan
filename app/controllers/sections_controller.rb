@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   before_action :require_authentication
+  before_action :require_cv_owner
   before_action :set_cv
   before_action :set_section, only: %i[edit update destroy]
 
@@ -34,8 +35,14 @@ class SectionsController < ApplicationController
 
   private
 
+  def require_cv_owner
+    unless Current.user&.email_address == "nathanjordaan@gmail.com"
+      redirect_to cv_index_path, alert: "Not authorized."
+    end
+  end
+
   def set_cv
-    @cv = Current.user.cv
+    @cv = Cv.joins(:user).find_by(users: { email_address: "nathanjordaan@gmail.com" })
   end
 
   def set_section

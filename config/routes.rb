@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "cv/index", to: "cvs#index"
   get "cv/pdf", to: "cvs#pdf", as: :cv_pdf
 
-  resource :cv, only: [:show, :edit, :update] do
+  resource :cv, only: [:edit, :update] do
     resources :sections, only: [:new, :create]
   end
   resources :sections, only: [:edit, :update, :destroy] do

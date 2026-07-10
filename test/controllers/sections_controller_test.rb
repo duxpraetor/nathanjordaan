@@ -35,13 +35,12 @@ class SectionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Publications", cvs(:owner_cv).sections.last.title
   end
 
-  test "should create section on own cv ignoring other cv_id" do
+  test "should redirect non-owner from create section" do
     sign_in_as users(:one)
-    assert_difference "Section.count", 1 do
+    assert_no_difference "Section.count" do
       post cv_sections_url, params: { section: { title: "My Section", display_order: 1 } }
     end
-    assert_redirected_to edit_cv_url
-    assert_equal "My Section", users(:one).cv.sections.last.title
+    assert_redirected_to cv_index_url
   end
 
   test "should update own section" do
@@ -51,10 +50,10 @@ class SectionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Employment", sections(:work).reload.title
   end
 
-  test "should not update other user's section" do
+  test "should redirect non-owner from update section" do
     sign_in_as users(:one)
     patch section_url(sections(:work)), params: { section: { title: "Hacked" } }
-    assert_response :not_found
+    assert_redirected_to cv_index_url
     assert_equal "Work experience", sections(:work).reload.title
   end
 
@@ -66,11 +65,11 @@ class SectionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_cv_url
   end
 
-  test "should not destroy other user's section" do
+  test "should redirect non-owner from destroy section" do
     sign_in_as users(:one)
     assert_no_difference "Section.count" do
       delete section_url(sections(:work))
     end
-    assert_response :not_found
+    assert_redirected_to cv_index_url
   end
 end

@@ -1,5 +1,7 @@
 class BulletsController < ApplicationController
   before_action :require_authentication
+  before_action :require_cv_owner
+  before_action :set_cv
   before_action :set_entry, only: %i[new create]
   before_action :set_bullet, only: %i[edit update destroy]
 
@@ -34,18 +36,22 @@ class BulletsController < ApplicationController
 
   private
 
+  def require_cv_owner
+    unless Current.user&.email_address == "nathanjordaan@gmail.com"
+      redirect_to cv_index_path, alert: "Not authorized."
+    end
+  end
+
+  def set_cv
+    @cv = Cv.joins(:user).find_by(users: { email_address: "nathanjordaan@gmail.com" })
+  end
+
   def set_entry
-    @entry = Entry.joins(section: :cv).find_by!(
-      id: params.expect(:entry_id),
-      sections: { cvs: { user_id: Current.user.id } }
-    )
+    @entry = Entry.joins(section: :cv).find_by!(id: params.expect(:entry_id), sections: { cvs: { id: @cv.id } })
   end
 
   def set_bullet
-    @bullet = Bullet.joins(entry: { section: :cv }).find_by!(
-      id: params.expect(:id),
-      entries: { sections: { cvs: { user_id: Current.user.id } } }
-    )
+    @bullet = Bullet.joins(entry: { section: :cv }).find_by!(id: params.expect(:id), entries: { sections: { cvs: { id: @cv.id } } })
     @entry = @bullet.entry
   end
 

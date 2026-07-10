@@ -1,14 +1,10 @@
 class CvsController < ApplicationController
   allow_unauthenticated_access only: %i[index pdf]
-  before_action :set_public_cv, only: %i[index pdf]
-  before_action :require_authentication, only: %i[show edit update]
-  before_action :set_my_cv, only: %i[show edit update]
+  before_action :set_cv
+  before_action :require_authentication, only: %i[edit update]
+  before_action :require_cv_owner, only: %i[edit update]
 
   def index
-  end
-
-  def show
-    redirect_to cv_index_path unless @cv
   end
 
   def edit
@@ -31,14 +27,13 @@ class CvsController < ApplicationController
 
   private
 
-  def set_public_cv
+  def set_cv
     @cv = Cv.joins(:user).find_by(users: { email_address: "nathanjordaan@gmail.com" })
   end
 
-  def set_my_cv
-    @cv = Current.user&.cv
-    if @cv.nil?
-      @cv = Current.user.create_cv!(name: Current.user.email_address.split("@").first, email: Current.user.email_address)
+  def require_cv_owner
+    unless Current.user&.email_address == "nathanjordaan@gmail.com"
+      redirect_to cv_index_path, alert: "You are not authorized to edit this CV."
     end
   end
 

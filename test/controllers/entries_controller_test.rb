@@ -35,12 +35,12 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "New Job", sections(:work).entries.last.title
   end
 
-  test "should not create entry for other user's section" do
+  test "should redirect non-owner from create entry" do
     sign_in_as users(:one)
     assert_no_difference "Entry.count" do
       post section_entries_url(section_id: sections(:work).id), params: { entry: { title: "Hacked" } }
     end
-    assert_response :not_found
+    assert_redirected_to cv_index_url
   end
 
   test "should update own entry" do
@@ -50,10 +50,10 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Updated Job", entries(:shipshape).reload.title
   end
 
-  test "should not update other user's entry" do
+  test "should redirect non-owner from update entry" do
     sign_in_as users(:one)
     patch entry_url(entries(:shipshape)), params: { entry: { title: "Hacked" } }
-    assert_response :not_found
+    assert_redirected_to cv_index_url
     assert_equal "ShipShape Software", entries(:shipshape).reload.title
   end
 
@@ -65,11 +65,11 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_cv_url
   end
 
-  test "should not destroy other user's entry" do
+  test "should redirect non-owner from destroy entry" do
     sign_in_as users(:one)
     assert_no_difference "Entry.count" do
       delete entry_url(entries(:shipshape))
     end
-    assert_response :not_found
+    assert_redirected_to cv_index_url
   end
 end

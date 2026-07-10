@@ -37,23 +37,20 @@ class CvsControllerTest < ActionDispatch::IntegrationTest
     sign_in_as users(:owner)
     patch cv_url, params: { cv: { name: "Updated Name", summary: "Updated summary." } }
     assert_redirected_to edit_cv_url
-    assert_equal "Updated Name", users(:owner).cv.reload.name
+    assert_equal "Updated Name", cvs(:owner_cv).reload.name
   end
 
-  # Other authenticated users
-  test "should create cv for new user on edit" do
-    sign_in_as users(:two)
-    assert_nil users(:two).cv
+  # Non-owner users cannot edit
+  test "should redirect non-owner from edit" do
+    sign_in_as users(:one)
     get edit_cv_url
-    assert_response :success
-    assert users(:two).reload.cv.present?
+    assert_redirected_to cv_index_url
   end
 
-  test "should update own cv only" do
+  test "should redirect non-owner from update" do
     sign_in_as users(:one)
     patch cv_url, params: { cv: { name: "Hacker" } }
-    assert_redirected_to edit_cv_url
-    assert_equal "Hacker", users(:one).cv.reload.name
-    assert_equal "Nathan Jordaan", users(:owner).cv.reload.name
+    assert_redirected_to cv_index_url
+    assert_equal "Nathan Jordaan", cvs(:owner_cv).reload.name
   end
 end

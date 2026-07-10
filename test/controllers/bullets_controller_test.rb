@@ -35,12 +35,12 @@ class BulletsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "New achievement", entries(:shipshape).bullets.last.description
   end
 
-  test "should not create bullet for other user's entry" do
+  test "should redirect non-owner from create bullet" do
     sign_in_as users(:one)
     assert_no_difference "Bullet.count" do
       post entry_bullets_url(entry_id: entries(:shipshape).id), params: { bullet: { description: "Hacked" } }
     end
-    assert_response :not_found
+    assert_redirected_to cv_index_url
   end
 
   test "should update own bullet" do
@@ -50,10 +50,10 @@ class BulletsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Updated achievement", bullets(:shipshape_bullet_1).reload.description
   end
 
-  test "should not update other user's bullet" do
+  test "should redirect non-owner from update bullet" do
     sign_in_as users(:one)
     patch bullet_url(bullets(:shipshape_bullet_1)), params: { bullet: { description: "Hacked" } }
-    assert_response :not_found
+    assert_redirected_to cv_index_url
     assert_equal "Redesign and rewrite of a Transport Management (TMS) Android app", bullets(:shipshape_bullet_1).reload.description
   end
 
@@ -65,11 +65,11 @@ class BulletsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_cv_url
   end
 
-  test "should not destroy other user's bullet" do
+  test "should redirect non-owner from destroy bullet" do
     sign_in_as users(:one)
     assert_no_difference "Bullet.count" do
       delete bullet_url(bullets(:shipshape_bullet_1))
     end
-    assert_response :not_found
+    assert_redirected_to cv_index_url
   end
 end
